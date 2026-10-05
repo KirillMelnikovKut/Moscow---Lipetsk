@@ -1,0 +1,20 @@
+@media (max-width:1050px) {
+  .workspace { grid-template-columns:minmax(0,1fr) 390px; gap:12px; padding:12px; }
+  .side-section { padding:19px 18px; }
+}
+@media (max-width:760px) {
+  .app-shell { height:auto; min-height:100%; overflow:visible; }
+  .workspace { display:flex; flex-direction:column; min-height:100vh; padding:10px; }
+  .map-panel { flex:none; height:min(54vh,480px); min-height:330px; border-radius:14px; }
+  .map-title { top:12px; left:12px; min-width:190px; padding:12px 13px; }
+  .map-legend { bottom:12px; left:12px; }
+  .sidebar { flex:none; overflow:visible; border-radius:14px; }
+  .side-tabs { border-radius:14px 14px 0 0; }
+}
+@media (max-width:390px) {
+  .workspace { padding:7px; gap:9px; }
+  .side-section { padding:17px 14px; }
+  .play-controls { gap:5px; }
+  .play-controls button { padding:8px; }
+  .speed-readout strong { font-size:34px; }
+}

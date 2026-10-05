@@ -1,0 +1,13 @@
+.git
+.venv
+**/__pycache__
+**/*.py[cod]
+frontend/node_modules
+frontend/dist
+data/**
+!data/
+!data/real/
+data/real/**
+!data/real/full_data.csv
+!data/real/missing_data.csv
+!data/real/restored_data.csv

@@ -1,4 +1,11 @@
-import type { Analysis, DataEnvelope, DatasetComparison, TelemetryPoint, TerrainPoint } from '../types/domain'
+import type {
+  Analysis,
+  DataEnvelope,
+  DatasetComparison,
+  RouteOptimizationResult,
+  TelemetryPoint,
+  TerrainPoint,
+} from '../types/domain'
 
 async function getJson<T>(url: string): Promise<T> {
   const response = await fetch(url, { cache: 'no-store' })
@@ -17,4 +24,12 @@ export const routeApi = {
   telemetry: () => getJson<DataEnvelope<TelemetryPoint>>('/api/telemetry'),
   analysis: () => getJson<Analysis>('/api/analysis'),
   datasets: () => getJson<DatasetComparison>('/api/datasets'),
+  optimization: (params?: { fuelPrice?: number; valueOfTime?: number; vehicleType?: string }) => {
+    const q = new URLSearchParams()
+    if (params?.fuelPrice !== undefined) q.set('fuel_price', String(params.fuelPrice))
+    if (params?.valueOfTime !== undefined) q.set('value_of_time', String(params.valueOfTime))
+    if (params?.vehicleType !== undefined) q.set('vehicle_type', params.vehicleType)
+    const qs = q.toString()
+    return getJson<RouteOptimizationResult>(`/api/optimization${qs ? `?${qs}` : ''}`)
+  },
 }

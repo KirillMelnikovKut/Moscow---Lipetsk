@@ -11,12 +11,12 @@ from sklearn.neighbors import KNeighborsRegressor
 
 
 RHO = 1.225
-CD_A = 5.5
+CD_A = 0.77
 CRR = 0.008
 GRAVITY = 9.81
 EFFICIENCY = 0.30
 FUEL_ENERGY = 35_000_000
-IDLE_LPH = 1.0
+IDLE_LPH = 0.8
 
 
 def terrain_experiment(points: list[dict]) -> dict:

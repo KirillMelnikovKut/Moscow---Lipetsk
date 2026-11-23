@@ -7,6 +7,7 @@ from backend.services import (
     analysis_payload,
     dataset_comparison_payload,
     dataset_status,
+    route_optimization_payload,
     route_payload,
     telemetry_payload,
 )
@@ -58,3 +59,19 @@ def datasets() -> dict:
         return dataset_comparison_payload()
     except DataError as exc:
         raise _unprocessable(exc) from exc
+
+
+@router.get("/optimization")
+def optimization(
+    fuel_price: float = 68.0,
+    value_of_time: float = 600.0,
+    vehicle_type: str = "car",
+) -> dict:
+    try:
+        return route_optimization_payload(
+            fuel_price=fuel_price,
+            value_of_time=value_of_time,
+            vehicle_type=vehicle_type,
+        )
+    except Exception as exc:
+        raise _unprocessable(ValueError(str(exc))) from exc
